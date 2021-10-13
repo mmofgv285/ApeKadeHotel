@@ -730,6 +730,7 @@ class Employee extends React.Component {
                                 Contact Number
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Contact Number'
                                     onChangeText={mobile => this.newEmployeeMobile(mobile)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -739,6 +740,7 @@ class Employee extends React.Component {
                                 Salary Per Day
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Salary Per Day'
                                     onChangeText={salary => this.newEmployeeSalary(salary)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -826,6 +828,7 @@ class Employee extends React.Component {
                                 Contact Number
                                 </Text>
                                 <Input
+                                    keyboardType='number-pad'
                                     value = {editEmployeeMobile}
                                     placeholder='Contact Number'
                                     onChangeText={mobile => this.editEmployeeMobile(mobile)}
@@ -836,6 +839,7 @@ class Employee extends React.Component {
                                 Salary Per Day
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     value = {editSalaryPerDay}
                                     placeholder='Salary Per Day'
                                     onChangeText={salary => this.editEmployeeSalary(salary)}
