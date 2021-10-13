@@ -201,6 +201,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.1.1')
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
 
+    implementation 'com.google.firebase:firebase-auth'
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }

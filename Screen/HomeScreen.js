@@ -25,7 +25,7 @@ const renderIcon = (style) => (
     <Icon name={secureTextEntry ? 'eye-off' : 'eye'}/>
   );
 
-class Login extends React.Component {
+class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -130,7 +130,7 @@ class Login extends React.Component {
                                  marginLeft:10,
                                  marginRight:10,
                                  marginBottom:5}}
-                                
+                                onPress={()=>this.props.navigation.navigate('Employee')}
                                  >
                                      <View style={{
                                          flex:1,
@@ -155,7 +155,7 @@ class Login extends React.Component {
                                  marginLeft:10,
                                  marginRight:10,
                                  marginBottom:5}}
-                                
+                                 onPress={()=>this.props.navigation.navigate('RawMaterial')}
                                  >
                                      <View style={{
                                          flex:1,
@@ -180,7 +180,7 @@ class Login extends React.Component {
                                  marginLeft:10,
                                  marginRight:10,
                                  marginBottom:5}}
-                                
+                                 onPress={()=>this.props.navigation.navigate('DailySales')}
                                  >
                                      <View style={{
                                          flex:1,
@@ -189,7 +189,32 @@ class Login extends React.Component {
                                          justifyContent:'space-around',
                                      }}>
                                         <Text category='h5' style={{margin:30, padding:20}}>
-                                        Profit Report
+                                        Daily Sales
+                                        </Text>
+                                        <Image
+                            source={require('../Image/Sales.png')}
+                            style={{ width: '50%', height: '80%', alignSelf: "center",  padding:20, marginLeft:30, marginRight:15 }} />
+                                     </View>
+                                
+                            </Card>
+
+                            <Card style={{
+                                borderRadius:20, 
+                                backgroundColor:'#99e6ff',
+                                 marginTop:5, 
+                                 marginLeft:10,
+                                 marginRight:10,
+                                 marginBottom:5}}
+                                 onPress={()=>this.props.navigation.navigate('ProfitCalculate')}
+                                 >
+                                     <View style={{
+                                         flex:1,
+                                         flexDirection:'row',
+                                         alignContent:'center',
+                                         justifyContent:'space-around',
+                                     }}>
+                                        <Text category='h5' style={{margin:30, padding:20}}>
+                                        Profit Calculator
                                         </Text>
                                         <Image
                             source={require('../Image/profit-report.png')}
@@ -215,4 +240,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(HomeScreen);
