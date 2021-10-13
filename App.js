@@ -23,6 +23,10 @@ const Stack = createStackNavigator();
 
 import Login from './Screen/Login';
 import HomeScreen from './Screen/HomeScreen';
+import Employee from './Screen/Employee';
+import RawMaterial from './Screen/RawMaterial';
+import DailySales from './Screen/DailySales';
+import ProfitCalculate from './Screen/ProfitCalculate';
 
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
@@ -86,6 +90,10 @@ const store = createStore(reducer);
     componentDidMount(){
       SplashScreen.hide();
     }
+
+    signOutUser(){
+      global.userLoginAuth = false;
+    }
   
     render() {
       return (
@@ -103,10 +111,90 @@ const store = createStore(reducer);
                 <Stack.Screen
                   name="HomeScreen"
                   component={HomeScreen}
-                  options={{ headerShown: true, title: 'අපේ කඩේ Hotel',
+                  options={({ navigation, route, props }) => ({ headerShown: true, title: 'Dashboard',
                   headerStyle: {backgroundColor: '#5dbf13'},
-                  headerTitleStyle:{color:'#ffffff'}, }}
+                  headerTitleStyle:{color:'#ffffff'},
+                
+                  headerRight: () => (
+                    <View style={{
+                      flex: 1,
+                      flexDirection: 'row'
+                    }}>
+                      
+                      <Avatar
+                        rounded
+                        source={require('./Image/login-admin.jpg')}
+                        containerStyle={{ marginRight: 10, marginTop: 10 }}
+                        onPress={() => {  }}
+                      />
+                      <Avatar
+                        rounded
+                        source={require('./Image/logout_app.png')}
+                        containerStyle={{ marginRight: 10, marginTop: 9, width: 40, height: 40 }}
+                        onPress={() => {
+                          Alert.alert(
+                            'Logout',
+                            'Are you sure? You want to logout?',
+                            [
+                              {
+                                text: 'Cancel',
+                                onPress: () => {
+                                  return null;
+                                },
+                              },
+                              {
+                                text: 'Confirm',
+                                onPress: () => {
+                                  AsyncStorage.clear();
+                                  this.signOutUser();
+                                  navigation.replace('Login');
+                                },
+                              },
+                            ],
+                            { cancelable: false },
+                          );
+                        }}
+                      />
+                    </View>
+                  ),
+                })}
                 />
+
+                <Stack.Screen
+                name="Employee"
+                component={Employee}
+                options={{ headerShown: true, title: 'Employee Management',
+                headerStyle: {backgroundColor: '#5dbf13'},
+                headerTitleStyle:{color:'#ffffff'},
+               }}
+              />
+
+                <Stack.Screen
+                name="RawMaterial"
+                component={RawMaterial}
+                options={{ headerShown: true, title: 'Raw Material Management',
+                headerStyle: {backgroundColor: '#5dbf13'},
+                headerTitleStyle:{color:'#ffffff'},
+               }}
+              />
+
+              <Stack.Screen
+                name="DailySales"
+                component={DailySales}
+                options={{ headerShown: true, title: 'Daily Sales',
+                headerStyle: {backgroundColor: '#5dbf13'},
+                headerTitleStyle:{color:'#ffffff'},
+               }}
+              />
+
+                <Stack.Screen
+                name="ProfitCalculate"
+                component={ProfitCalculate}
+                options={{ headerShown: true, title: 'Profit Calculate',
+                headerStyle: {backgroundColor: '#5dbf13'},
+                headerTitleStyle:{color:'#ffffff'},
+               }}
+              />
                 
               </Stack.Navigator>
             </NavigationContainer>
