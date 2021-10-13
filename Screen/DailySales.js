@@ -625,6 +625,7 @@ class DailySales extends React.Component {
                                 Sales Amount (Rs)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Sales Amount (Rs)'
                                     onChangeText={unitPrice => this.newSalesAmount(unitPrice)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -720,6 +721,7 @@ class DailySales extends React.Component {
                                 Amount
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     value = {editSalesAmount}
                                     placeholder='Amount'
                                     onChangeText={amount => this.editSalesAmount(amount)}

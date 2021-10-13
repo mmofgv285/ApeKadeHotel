@@ -937,6 +937,7 @@ class RawMaterial extends React.Component {
                                 Quantity from (Kg)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Stock'
                                     onChangeText={quantity => this.newMaterialQuantity(quantity)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -946,6 +947,7 @@ class RawMaterial extends React.Component {
                                 Unit Price (Rs.)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Unit Price'
                                     onChangeText={unitPrice => this.newUnitPrice(unitPrice)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -1041,6 +1043,7 @@ class RawMaterial extends React.Component {
                                 Quantity From (Kg)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     value = {editMaterialQuantity}
                                     placeholder='Quantity'
                                     onChangeText={quantity => this.editMaterialQuantity(quantity)}
@@ -1051,6 +1054,7 @@ class RawMaterial extends React.Component {
                                 Unit Price (Rs.)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     value = {editMaterialUnitPrice}
                                     placeholder='Unit Price'
                                     onChangeText={unitPrice => this.editMaterialUnitPrice(unitPrice)}
@@ -1140,6 +1144,7 @@ class RawMaterial extends React.Component {
                                 Issue Quantity from (Kg)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Issue Quantity'
                                     onChangeText={quantity => this.issueMaterialQuantity(quantity, selectMatAvailableQuantity)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
@@ -1212,6 +1217,7 @@ class RawMaterial extends React.Component {
                                 Expired Quantity from (Kg)
                                 </Text>
                                 <Input
+                                keyboardType='number-pad'
                                     placeholder='Expired Quantity'
                                     onChangeText={quantity => this.expiredMaterialQuantity(quantity, selectMatAvailableQuantity)}
                                     style={{ width:'90%', borderColor: 'black', marginTop: 10, marginLeft: 10 }}
