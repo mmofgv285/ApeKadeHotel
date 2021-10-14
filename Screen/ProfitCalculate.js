@@ -50,6 +50,7 @@ class ProfitCalculate extends React.Component {
             profitMonth:"",
             totalSalesAmount:"",
             totalSalaryAmount:"",
+            totalMaterialSpentAmount:"",
             otherCosts:"",
             totalProfitAmount:0,
 
@@ -262,6 +263,7 @@ class ProfitCalculate extends React.Component {
         let allSalesAmount = 0;
         let allAttendancePresentEmployee = [];
         let allSalaryAmount = 0;
+        let allIssueMaterialAmount = 0;
         let getSelectMonth = new Date(date).getMonth()+1;
         _.forEach(global.allDetails.sales, function (value, key) {
             if (value != null) {
@@ -291,9 +293,24 @@ class ProfitCalculate extends React.Component {
             });
         });
 
-        console.log(allAttendancePresentEmployee);
+        _.forEach(global.allDetails.issue_material, function (value, key) {
+            if (value != null) {
+                _.forEach(global.allDetails.material, function (valueSub, keySub) {
+                    if (valueSub != null) {
+                        if (value.matId == valueSub.id) {
+                            if ((new Date(value.issueDate).getMonth()+1) == getSelectMonth) {
+                            allIssueMaterialAmount += (parseInt(valueSub.unitPrice) * parseInt(value.quantity));
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        console.log(allIssueMaterialAmount);
         this.setState({totalSalesAmount: allSalesAmount});
         this.setState({totalSalaryAmount: allSalaryAmount});
+        this.setState({totalMaterialSpentAmount: allIssueMaterialAmount});
         this.setState({profitMonth: this.getMonthName(getSelectMonth)});
         this.setState({spinner:false});
     }
@@ -359,10 +376,10 @@ class ProfitCalculate extends React.Component {
         this.setState({otherCosts: costs});
     }
 
-    calculateProfitDetails(totalSalesAmount,totalSalaryAmount,otherCosts){
+    calculateProfitDetails(totalSalesAmount,totalSalaryAmount,otherCosts, totalMaterialSpentAmount){
         this.setState({spinner:true});
         let totalProfit = 0;
-        totalProfit = parseInt(totalSalesAmount) - (parseInt(totalSalaryAmount) + parseInt(otherCosts));
+        totalProfit = parseInt(totalSalesAmount) - (parseInt(totalSalaryAmount) + parseInt(otherCosts) + parseInt(totalMaterialSpentAmount));
         this.setState({totalProfitAmount: totalProfit});
         this.setState({spinner:false});
     }
@@ -493,6 +510,7 @@ class ProfitCalculate extends React.Component {
             profitMonth,
             totalSalesAmount,
             totalSalaryAmount,
+            totalMaterialSpentAmount,
             otherCosts,
             totalProfitAmount,
         } = this.state;
@@ -532,6 +550,10 @@ class ProfitCalculate extends React.Component {
                                     }}
                                     onDateChange={date => this.setChangeDate(date)}
                                 />
+
+                                <Text style={{alignSelf:'flex-start', marginLeft:10, marginTop:20}}>
+                                Material Spent Amount ~ <Text style={{fontWeight:'bold'}}> Rs.{totalMaterialSpentAmount} </Text>
+                                </Text>
 
                                 <Text style={{alignSelf:'flex-start', marginLeft:10, marginTop:20}}>
                                 Sales Amount ~ <Text style={{fontWeight:'bold'}}> Rs.{totalSalesAmount} </Text>
@@ -588,7 +610,7 @@ class ProfitCalculate extends React.Component {
                                     title="Calculate"
                                     titleStyle={{ marginLeft: 10 }}
                                     buttonStyle={{ backgroundColor: '#47a847', marginTop: 20, }}
-                                    onPress={()=>this.calculateProfitDetails(totalSalesAmount,totalSalaryAmount,otherCosts)}
+                                    onPress={()=>this.calculateProfitDetails(totalSalesAmount,totalSalaryAmount,otherCosts, totalMaterialSpentAmount)}
                                 />
                     </View>
                 </ScrollView>
