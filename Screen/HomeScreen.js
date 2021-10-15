@@ -161,14 +161,14 @@ class HomeScreen extends React.Component {
                                          flex:1,
                                          flexDirection:'row',
                                          alignContent:'center',
-                                         justifyContent:'space-around',
+                                         justifyContent:'space-evenly',
                                      }}>
-                                        <Text category='h5' style={{margin:30, padding:20}}>
+                                        <Text category='h5' style={{marginLeft:20,marginRight:30,marginBottom:30,marginTop:30, padding:20}}>
                                         Raw Material Stock Management
                                         </Text>
                                         <Image
                             source={require('../Image/raw-material.png')}
-                            style={{ width: '60%', height: '80%', alignSelf: "center",  padding:20, marginLeft:30, marginRight:15 }} />
+                            style={{ width: '40%', height: '60%', alignSelf: "center",  padding:20, marginLeft:30, marginRight:20 }} />
                                      </View>
                                 
                             </Card>
